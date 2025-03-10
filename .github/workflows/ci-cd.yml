@@ -121,6 +121,9 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           load: true
       
+      - name: Wait for image availability
+        run: sleep 20
+      
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
@@ -161,7 +164,7 @@ jobs:
       
       - name: Update Kubernetes deployment file
         env:
-          IMAGE_TAG: sha-${{ github.sha }}
+          IMAGE_TAG: ${{ github.sha }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           REGISTRY: ghcr.io
         run: |

@@ -2,11 +2,11 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths-ignore:
       - 'kubernetes/deployment.yaml'  # Ignore changes to this file to prevent loop
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
